@@ -9,7 +9,7 @@ MPM allows you to easily switch, update, diff and create new projects based on a
 You can install MPM with the following command:
 
 ```
-npm install -g mpm
+npm install -g b2.mpm
 ```
 
 ## Usage
