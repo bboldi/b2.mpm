@@ -1,6 +1,6 @@
 {
   "name": "b2.mpm",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "mpm.js",
   "homepage": "https://github.com/bboldi/b2.mpm#readme",
   "repository": "https://github.com/bboldi/b2.mpm",

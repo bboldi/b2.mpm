@@ -7,7 +7,7 @@ const _ = require("lodash");
 const jsdiff = require("diff");
 const exec = require("child_process").execSync;
 const spawn = require("child_process").spawn;
-let getConfig = require("./mpm.config.js");
+let getConfig = require(path.join(process.cwd(),"mpm.config.js"));
 
 // variable to keep config overwrite stuff
 let overwrite_config = {};
