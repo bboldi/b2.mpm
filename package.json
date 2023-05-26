@@ -1,6 +1,18 @@
 {
   "name": "b2.mpm",
   "version": "0.1.0",
+  "main": "mpm.js",
+  "homepage": "https://github.com/bboldi/b2.mpm#readme",
+  "repository": "https://github.com/bboldi/b2.mpm",
+  "author": "Boldizsar Bednarik",
+  "license": "GPL-3.0",
+  "keywords": [
+    "cli",
+    "npmtool",
+    "multi project manager",
+    "utility"
+  ],
+  "description": "A Node utility to help you manage multiple projects on the same codebase. This is particularly useful for projects where you need to compile the same codebase with different themes or configs, such as Ionic or web projects, and where that's not supported out of the box.",
   "bin": {
     "mpm": "./mpm.js"
   },
