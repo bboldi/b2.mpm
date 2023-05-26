@@ -1,0 +1,14 @@
+{
+  "name": "b2.mpm",
+  "version": "0.1.0",
+  "bin": {
+    "mpm": "./mpm.js"
+  },
+  "dependencies": {
+    "diff": "^5.0.0",
+    "fs-extra": "^9.1.0",
+    "lodash": "^4.17.21",
+    "rimraf": "^3.0.2",
+    "yargs": "^16.2.0"
+  }
+}
