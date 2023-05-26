@@ -173,3 +173,11 @@ This sample structure demonstrates the following key elements:
 - `common`: A folder containing common files and assets to be shared among different projects.
 
 Your specific project structure may vary based on your needs and the frameworks you are using, but the sample above should help you get started with organizing your multiple projects using MPM.
+
+## ⚠️ Warning: Use at Your Own Risk
+
+This utility is provided as-is, with no guarantees or warranties of any kind. By using this utility, you acknowledge that you are solely responsible for its proper use, and any consequences that may arise from its usage are your responsibility.
+
+Please ensure you understand the functionality and implications of this utility before deploying it in your projects. It is always a good practice to backup your existing projects, configurations, and codebases before using any new utilities or tools.
+
+Use this utility at your own risk, and exercise caution when applying it to your projects. The developers and maintainers of this utility are not liable for any loss or damage resulting from its usage.
