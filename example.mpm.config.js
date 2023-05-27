@@ -1,81 +1,80 @@
 module.exports = function getConfig() {
   return {
-    // which one is the max depth the script should have access to
-    // this will prevent the script to delete, modify files outside of it's scope
-    // if you're running the script from a sub directory of the project, then you can
-    // set this to for example "../" relative path. "/" is not a valid value (empty means current path)
+    // The maximum path depth that a script can access.
+    // This prevents the script from deleting or modifying files outside its scope.
+    // If you run the script from a subdirectory of the project, set this to the relative path, e.g.,
+    // "../" relative path. "/" is not a valid value (empty means the current path).
     secure_base_path: "../",
 
-    // where are the separate project directories
-    // relative to mpm.config.json file
+    // The separate project directories, relative to mpm.config.json file.
     project_root: "../projects/apps",
 
-    // config that will be used to find/replace stuff in certain files
-    // json file with specific format
+    // Config file used to find/replace content in certain files; must be a JSON file with a specific format.
     project_config_file: "[project_path]/config[env].json",
 
-    // where to copy project config file when generating
-    // json file with specific format
-    project_config_destination:
-      "[destination_root]/src/environments/config.json",
+    // Destination for copying the project configuration file during generation; must be a JSON file with a specific format.
+    project_config_destination: "[destination_root]/src/environments/config.json",
 
-    // where is the destination root
-    // relative to mpm.config.json file
+    // The destination root folder relative to mpm.config.json file.
     destination_root: ".",
 
-    // where are common files stored
-    // relative to mpm.config.json file
+    // The common files storage folder relative to mpm.config.json file. 
     common_root: "../projects/common",
 
-    // a common config file we'll be using with every project
+    // The common config file used for every project.
     common_config_file: "[common_root]/common.config.json",
 
-    // file and directory list that will be deleted and then softlinked
-    // these files will also be used to create new projects
-    // simple file copy / link only, no modifications - mostly per project files
+    // List of files and directories that will be deleted and then soft-linked.
+    // These files will also be used to create new projects.
+    // This is a simple file copy/link only, no modifications are done - mostly per project files.
     file_list_simple: [
-      // ["[project_path]/", "[destination_root]/"],
-
-      // assets
-
+      // Assets - example
+      
+      // Link source and destination for custom.scss
       {
         src: "[project_path]/src/custom.scss",
         dest: "[destination_root]/src/custom.scss",
         type: "link",
       },
+
+      // Link source and destination for variables.scss
       {
         src: "[project_path]/src/theme/variables.scss",
         dest: "[destination_root]/src/theme/variables.scss",
         type: "link",
       },
 
+      // Copy source and destination for google-services[env].json
       {
         src: "[project_path]/android/app/google-services[env].json",
         dest: "[destination_root]/android/app/google-services.json",
         type: "copy",
       },
 
+      // Copy source and destination for GoogleService-Info[env].plist
       {
         src: "[project_path]/ios/App/App/GoogleService-Info[env].plist",
         dest: "[destination_root]/ios/App/App/GoogleService-Info.plist",
         type: "copy",
       },
-
-      // ... other files
+      
+      // ... Other files
 
     ],
 
-    // file liest used for cleanup, all files here will be delted during checkout
+    // List of files used for cleanup. All files in this list will be deleted during checkout.
     file_list_delete: ["[destination_root]/android/app/src/main/java/com"],
 
-    // copy and modify files
-    // this is used to copy files that have variables in them
-    // these files are usually kept in a common place, and copied to project when
-    // changed, also if we change the content of them, we can update them in common forlder or wherever
-    // ... mostly files that will be modded for each project, and used from a common place - not per project stuff
-    // generated files so to speak, but it can do copy only if there's not replace_rules defined
+    // List of files that will be copied and modified.
+    // This list is used to copy files containing variables.
+    // These files are kept in a common place and copied to the project when changed.
+    // Files may also be updated in the common folder or elsewhere.
+    // Mostly these are files that are modified for each project and used from a common place – not per project files.
+    // If there are no replace_rules defined, these files will act as generated files.
     file_list_mod: [
 
+      // example
+      
       {
         src: "[common_root]/android/app/src/main/AndroidManifest.xml",
         dest: "[destination_root]/android/app/src/main/AndroidManifest.xml",
@@ -123,11 +122,10 @@ module.exports = function getConfig() {
 
     ],
 
-    // list of commands to execute before checkout proccess
+    // List of commands to execute before the checkout process.
     execute_before: ["echo *execute before placeholder*\n"],
 
-    // list of commands to execute after checkout proccess
+    // List of commands to execute after the checkout process.
     execute_after: ["echo *execute after placeholder*\n"],
-    // example : ["build cleanup", "build libs", "build compile"],
   };
 };
