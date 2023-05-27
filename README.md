@@ -17,6 +17,7 @@ npm install -g b2.mpm
 MPM is a command-line tool that provides the following commands:
 
 ```
+mpm init                     - Initialize project ( create mpm.config.js file in current directory with example data )
 mpm new <name>               - Create new project based on mpm.config.js file, and current project
 mpm update <name>            - Update common files based on current project
 mpm gitignore                - Get gitignore entry list based on current config

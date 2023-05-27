@@ -5,8 +5,15 @@ const fs = require("fs-extra");
 const path = require("path");
 const _ = require("lodash");
 const jsdiff = require("diff");
-const exec = require("child_process").execSync;
 const spawn = require("child_process").spawn;
+
+// init project?
+if(process.argv[2] == "init") {
+  // init project
+  initProject(); 
+  process.exit(0);
+}
+
 let getConfig = require(path.join(process.cwd(),"mpm.config.js"));
 
 // variable to keep config overwrite stuff
@@ -209,8 +216,6 @@ let overwrite_option = {
 
               -o key1 value1 -o key2 "another complex value"`,
 };
-
-// this will be in a config file later mpmconfig.json in the project's root
 
 // implementation
 
@@ -1013,6 +1018,30 @@ function displayDiff(_diffResult) {
 
   if (!_wasDiff) {
     showMessage(`All files are identical!`);
+  }
+}
+
+/**
+ * Helper function to tell if main config file exists
+ * @returns boolean
+ */
+function mainConfigExists()
+{
+  var _dest = path.join(process.cwd(),"mpm.config.js"); 
+  return fs.existsSync(_dest);
+}
+
+/**
+ * Initialize project config file
+ */
+function initProject() {
+  var _dest = path.join(process.cwd(),"mpm.config.js"); 
+
+  if (!fs.existsSync(_dest)) {
+    fs.copySync(path.join(__dirname,"example.mpm.config.js"), _dest, { overwrite: false });
+    showMessage(`Project config file created at "${_dest}"! Please edit it to your needs!`);
+  } else {
+    showMessage(`WARNINIG: ${_dest} already exists!`);
   }
 }
 
