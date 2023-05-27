@@ -1,5 +1,7 @@
 # b2.mpm (Multiple Project Manager)
 
+[![npm](https://img.shields.io/npm/v/b2.mpm.svg)](https://www.npmjs.com/package/b2.mpm)
+
 A Node utility to help you manage multiple projects on the same codebase. This is particularly useful for projects where you need to compile the same codebase with different themes or configs, such as Ionic or web projects, and where that's not supported out of the box.
 
 MPM allows you to easily switch, update, diff and create new projects based on a single configuration file (`mpm.config.js`).
