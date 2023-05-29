@@ -7,14 +7,8 @@ const _ = require("lodash");
 const jsdiff = require("diff");
 const spawn = require("child_process").spawn;
 
-// init project?
-if(process.argv[2] == "init") {
-  // init project
-  initProject(); 
-  process.exit(0);
-}
-
-let getConfig = require(path.join(process.cwd(),"mpm.config.js"));
+// project config function holder
+let getConfig = null;
 
 // variable to keep config overwrite stuff
 let overwrite_config = {};
@@ -30,13 +24,21 @@ changeRoot();
 
 // get not specific config
 
-var mpmConfig = getConfig();
+let mpmConfig = null; 
 
 /**
  * return config object - and overwrite stuff based on cli params
  * @returns
  */
 function conf() {
+
+  if(!getConfig)
+  {
+    // init only if it's needed
+    getConfig = require(path.join(process.cwd(),"mpm.config.js"));
+    mpmConfig = getConfig();
+  }
+
   let _conf = { ...mpmConfig, ...overwrite_config };
   return _conf;
 }
@@ -275,6 +277,15 @@ var argv = yargs
   })
 
   .command({
+    command: "init",
+    desc: "Initialize project based on mpm.config.js file",
+    handler: async () => {
+      await initProject();
+      process.exit(0);
+    },
+  })
+
+  .command({
     command: "diff [name]",
     desc: "Generate difference for copy/mod files",
     builder: (yargs) => {
@@ -426,7 +437,6 @@ function getObjectFromArrayPairs(data) {
 
 /**
  * Get gitignore list
- * @param {*} mpmConfig
  */
 async function getGitignore() {
   showMessage(`Generating .gitignore entities ... `);
